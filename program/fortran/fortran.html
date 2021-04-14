@@ -31,8 +31,6 @@
 								<!-- Text -->
 									<section>
 										<h2>Previously <strong>FORTRAN</strong></h2>
-										<!--<div class="row">
-										<div class="col-9 col-12-medium">-->
 										<div class="spotlight">
 											<div class="content">
 										
@@ -41,29 +39,28 @@
 											physics. <a href="http://www.moreisdifferent.com/2015/07/16/why-physicsts-still-use-fortran/?fbclid=IwAR1jchnbjsjCIgOA-7Flbfl67-33oWC_wGyOPTNaWy_7kP78fUGLIWihoXM">Why?</a></p>
 										
 											<p>Frotran was made for and by mathematicians, physics and engineers, that
-											in the 50's in IBM. Becuase of that, for example, we'll
-											start in one and not in zero, "being" consistens with the typical
+											in the 50's in IBM. Becuase of that, for example, we start to count
+											in one and not in zero, as usual, that "to be" consistens with the typical
 											math notation in sums or products. <p>
 
+											<p>Some programs of these awesome and powerfull language program are
+											in the buttons bellow with documentation, and also a little program
+											is showed. The really heavy programs are in
+											my <a href="https://github.com/vcastor">GitHub</a></p>
+							
 											</div>
 
-										<!--</div>-->
-
-										<span class="image"><img src="../../images/logoFortran.png" /></span>
-										<!--<div class="col-3 col-12-medium">
-											<img src="../../images/logoFortran.png" width=100>
-										</div>-->
+										<div class="image"><img src="../../images/logoFortran.png"></div>
 										</div>
 
-										<p>Some programs of these awesome and powerfull language program are
-										in the buttons bellow with documentation, and also a little program
-										is showed. The really heavy programs are in
-										my <a href="https://github.com/vcastor">GitHub</a></p>
 
 										<hr />
 										<h3>Quadratic Equation</h3>
 										Here we have a simple code for solving a quadratic equation
-										using only real variables in the code.
+										using only real variables in the code. As we know, the genalizated
+										solution for quadratic equations are described by:
+										$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+										Therefore, is so easy compute the value for any QE.
 										<pre><code>PROGRAM QuadraticEquation
 IMPLICIT NONE
 
@@ -118,9 +115,17 @@ END IF
 
 END PROGRAM QuadraticEquation</code></pre>
 									</section>
-								<a href="./fortran/integration.zip" class="button">Integration</a>
-								<a href="./fortran/montecarlo.zip" class="button">Monte Carlo</a>
-								<a href="./fortran/optimization.zip" class="button">Optimization</a>
+
+								<hr />
+								<p>In the next buttons you can downlaod source codes of some programs written
+								by me, some of the zip files has an pdf as documenation of the code.</p>
+								<a href="./codes/integration.zip" class="button">Integration</a>
+								<a href="./codes/montecarlo.zip" class="button">Monte Carlo</a>
+								<a href="./codes/optimization.zip" class="button">Optimization</a>
+								
+								<a href="./codes/huckel.zip" class="button">Hückel Method</a>
+								<a href="./codes/linear_regression.zip" class="button">Linear Regression</a>
+								<a href="./codes/polynomial_regression.zip" class="button">Polynomial Regression</a>
 
 
 							</section>
@@ -165,6 +170,8 @@ END PROGRAM QuadraticEquation</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+			<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 	</body>
 </html>
