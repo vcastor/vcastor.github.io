@@ -1,79 +1,63 @@
-PROGRAM RegresionLineal
+PROGRAM linearregression
 
-!==========================
-!Programita para hacer una regesion lineal y el calculo
-!de las incertidumbres
-!VCastor
-!Programa hecho en 2016 cuando recien iniciaba en la programacion
-!esta siendo actualizado en 2021
-!==========================
+!***********************************************************************
+!------      This program compute a linear regression and the     ------
+!------                 uncertainties with n-points               ------
+!------                                                           ------
+!------                       ~VCastor 2022                       ------
+!***********************************************************************
 
-Integer npuntos
-real m,b,sx,sx2,sy,sy2,sxy,x,y,r,symxb2,ub,um
+IMPLICIT NONE
+INTEGER                                 :: i, npoints
+REAL(KIND=8)                            :: m, b, sx, sx2, sy, sy2, sxy
+REAL(KIND=8)                            :: symxb2, ub, um, r
+REAL(KIND=8), DIMENSION(:), ALLOCATABLE :: x, y
 
-WRITE(*,*) "The data should be in a file with the name:"
-WRITE(*,*) "data.dat"
+!=======================================================================
+OPEN(108,FILE="data.dat")
+  READ(108,*) npoints
+  ALLOCATE(x(npoints), y(npoints))
+  DO i = 1, npoints
+    READ(108,*) x(i), y(i)
+  ENDDO
+CLOSE(108)
+!=======================================================================
 
-OPEN(8,FILE="data.dat")
-READ(8,*) npuntos
+sx = 0.d0; sy = 0.d0; sx2 = 0.d0; sy2 = 0.d0; sxy = 0.d0
 
-dimension x(npuntos),y(npuntos)
+DO i = 1, npoints
+  sx  = sx  + x(i)
+  sy  = sy  + y(i)
+  sx2 = sx2 + x(i)*x(i)
+  sy2 = sy2 + y(i)*y(i)
+  sxy = sxy + x(i)*y(i)
+ENDDO
 
-do i=1,npuntos
- read(8,*)x(i),y(i)
-end do
+m = (npoints*sxy - sx*sy)/(npoints*sx2 - sx*sx)
+b = ((sy*sx2) - (sx*sxy))/(npoints*sx2 - (sx*sx))
+r = (sxy - sx*sy/npoints)/DSQRT((sx2 - sx*sx/npoints)*&
+                                                  (sy2 - sy*sy/npoints))
+!UNCERTAINTIES
+symxb2 = 0.d0
+DO i = 1, npoints
+  symxb2 = symxb2 + (y(i) -m*x(i) -b)*(y(i) -m*x(i) -b)
+ENDDO
 
-!==========================
-!PROCEDIMIENTO, sumas
-!==========================
-sx=0.0
-sy=0.0
-sx2=0.0
-sy2=0.0
-sxy=0.0
-do i=1,npuntos
- sx=sx+x(i)
- sy=sy+y(i)
- sx2=sx2+x(i)*x(i)
- sy2=sy2+y(i)*y(i)
- sxy=sxy+x(i)*y(i)
-end do
+um = DSQRT(npoints*symxb2/((npoints-2)*(npoints*sx2 -sx*sx)))
+ub = DSQRT(sx2*symxb2/((npoints-2)*(npoints*sx2 -sx*sx)))
 
-!===========
-!PENDIENTE
-!============
+!=======================================================================
+OPEN(109,FILE="data.csv")
+  DO i = 1, npoints
+    WRITE(109,FMT='(F14.8,A1,F14.8)') x(i), ',', y(i)
+  ENDDO
+CLOSE(109)
 
-m=(npuntos*sxy-sx*sy)/(npuntos*sx2-sx*sx)
-write(*,*)"m=",m
-
-!===================================
-!PROCEDIMIENTO ORDENADA DE ORIGEN
-!===================================
-
-b=((sy*sx2)-(sx*sxy))/(npuntos*sx2-(sx*sx))
-write(*,*)"b=",b
-
-!===========================
-!COEFICIENTE DE CORELACIÓN
-!===========================
-
-r=(sxy-(sx*sy/npuntos))/(SQRT((sx2-(sx*sx/npuntos))*(sy2-(sy*sy/npuntos))))
-write(*,*)"r=",r
-write(*,*)"r^2=",r*r
-
-!========================
-!INCERTIDUMBRES
-!========================
-
-symxb2=0.0
-do i=1,npuntos
- symxb2=symxb2+(y(i)-m*x(i)-b)*(y(i)-m*x(i)-b)
-end do
-
-um=SQRT((npuntos*symxb2)/((npuntos-2)*(npuntos*sx2-sx*sx)))
-ub=SQRT((sx2*symxb2)/((npuntos-2)*(npuntos*sx2-sx*sx)))
-
-write(*,*)"U(m)=",um
-write(*,*)"U(b)=",ub
-
-ENDPROGRAM RegresionLineal
+WRITE(*,FMT='(A6,F15.8)')"b    =", b
+WRITE(*,FMT='(A6,F15.8)')"m    =", m
+WRITE(*,FMT='(A6,F15.8)')"U(m) =", um
+WRITE(*,FMT='(A6,F15.8)')"U(b) =", ub
+WRITE(*,FMT='(A6,F15.8)')"r    =", r
+WRITE(*,FMT='(A6,F15.8)')"r^2  =", r*r
+!***********************************************************************
+ENDPROGRAM linearregression

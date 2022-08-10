@@ -42,13 +42,12 @@
 										
 											<p>Frotran was made for and by mathematicians, physics and engineers, that
 											in the 50's in IBM. Becuase of that, for example, we start to count
-											in one and not in zero, as usual in computer science, that "to be" consistens with the typical
+											by one and not in zero, as usual in computer science, that "to be" consistens with the typical
 											math notation in sums or products, etc. </p>
 
-											<p>Some of my programs in these awesome and powerfull language program are
-											in the buttons bellow with documentation, and also a little program
-											is showed, just to display how is the sintaxis of FORTRAN. The really heavy programs are in
-											my <a href="https://github.com/vcastor" target="_blank">GitHub</a></p>
+											<p>Some of my programs in this awesome and powerfull language program are
+											in the buttons bellow with documentation, and also a little program about Quadratic Equation
+											is showed, it just to display how is the sintaxis in FORTRAN.</p>
 
 											</div>
 
@@ -64,13 +63,13 @@
 										using only real variables in the code. As we know, the genalizated
 										solution for quadratic equations are described by:
 										$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
-										Therefore, is so easy compute the value for any QE.
+										Therefore, to compute the value for any QE we need:
 										<pre><code>PROGRAM QuadraticEquation
 IMPLICIT NONE
 
-REAL*8:: a,b,c                          !Real, for ax^2 + bx + c = 0
+REAL*8:: a, b, c                        !Real, for ax^2 + bx + c = 0
 REAL*8:: d                              !Discriminant
-REAL*8:: root1,root2,root3,root4        !Roots, for sqrt(-1) we'll use the character 'i'
+REAL*8:: root1, root2, root3, root4     !Roots, for sqrt(-1) we'll use the character 'i'
 
 WRITE (UNIT=*, FMT='(/A/)') 'Write down coeficients as: ax^2 + bx + c = 0:'
 
@@ -86,63 +85,72 @@ READ(*,*) c
 !Can we compute?
 
 IF (a == 0.0) THEN
-    IF (b == 0.0) THEN
-        IF (c == 0.0) THEN
-            WRITE (*,*) 'Come on, dude. All the numbers are roots! LOL' !0=0 tautology
-        ELSE
-            WRITE (*,*) 'Unsolve Equation, bist du blau? LMAO'          !Rlly!?
-        END IF
+  IF (b == 0.0) THEN
+    IF (c == 0.0) THEN
+      !0=0 tautology
+      WRITE (*,*) 'Come on, dude. All the numbers are roots! LOL'
     ELSE
-        WRITE(*,*) 'Is a Linear Equation, but the root is: ', -c/b      !not coefficient for x^2
-    END IF
+      !Rlly?
+      WRITE (*,*) 'Unsolve Equation, bist du blau? LMAO'
+    ENDIF
+  ELSE
+    !not coefficient for x^2
+    WRITE(*,*) 'It was a Linear Equation, but the root is: ', -c/b
+  ENDIF
+
 ELSE 
 
 !Here we go with the chicharronera
 
-d = b*b - 4.D0*a*c                !Discriminant
-
-IF ( d >= 0.0 ) THEN               !We'll have real roots
-    d     = SQRT(d)
-    root1 = (-b + d)/(2.D0*a)     ! first root
-    root2 = (-b - d)/(2.D0*a)     ! second root
+  d = b*b - 4.d0*a*c                !Discriminant
+  IF ( d .GE. 0.0 ) THEN            !We'll have real roots
+    d     = DSQRT(d)
+    root1 = (-b + d)/(2.d0*a)       ! first root
+    root2 = (-b - d)/(2.d0*a)       ! second root
     WRITE(*,FMT="(A,F9.5,A,F9.5)")  'Roots are: ', root1, ' and ', root2
-ELSE                              !We'll have complex roots
+  ELSE                              !We'll have complex roots
     d     = SQRT(-d)
-    root3 = -b/(2.D0*a)           !roots as parts of whole root
-    root4 =  d/(2.D0*a)
+    root3 = -b/(2.d0*a)             !roots as parts of whole root
+    root4 =  d/(2.d0*a)
     WRITE(*,*)  'The roots are:'
     WRITE(*,FMT="(F9.5,A3,F9.5,A)")  root3,'  +', root4,'i'
     WRITE(*,FMT="(F9.5,A3,F9.5,A)")  root3,'  -', root4,'i'
+  ENDIF
+ENDIF
 
-END IF
-END IF
-
-END PROGRAM QuadraticEquation</code></pre>
+ENDPROGRAM QuadraticEquation</code></pre>
 									</section>
-
-								<hr />
 
 
 								<h3>Miscellaneous programs</h3>
 								
-								<p>In the next buttons you can downlaod source codes of some programs written
-								by me, some of the programs are in zip files with a pdf documenation of the code.</p>
-								
-								<p>Documented source:</p>
-								<!--<a href="./codes/integration.zip" class="button">Integration</a>-->
-								<a href="./integration.zip" class="button">Integration</a>
-								<a href="./montecarlo.zip" class="button">Monte Carlo</a>
-								<a href="./opt.zip" class="button">Optimization</a>
+                <p>In the next buttons are some programs written by me, some of them has also a
+                documentation file, some others just the code. However, don't be shy to send me
+                a message to know more about the code that I've wrote.</p>
 								
 								<p></p>
 								<p>Only source code:</p>
-								<a href="./huckel.f90" class="button">Hückel Method</a>
-								<a href="./rl.f90" class="button">Linear Regression</a>
-								<a href="./polynomial.f90" class="button">Polynomial Regression</a>
+								<a href="https://github.com/vcastor/Huckel/blob/main/huckel.f90" target="_blank" class="button">Hückel Method</a>
+								<a href="https://github.com/vcastor/linear_polynomial_regression/blob/main/linear.f90" target="_blank" class="button">Linear Regression</a>
+								<a href="https://github.com/vcastor/linear_polynomial_regression/blob/main/polynomial.f90" target="_blank" class="button">Polynomial Regression</a>
+                <a href="https://github.com/vcastor/subroutines_ideas_f90/blob/main/determinant_LU.f90" target="_blank" class="button">Determinant by LU</a>
+                <a href="https://github.com/vcastor/subroutines_ideas_f90/blob/main/gauss_jordan.f90" target="_blank" class="button">Gauss Jordan Diagonalize</a>
+                <a href="https://github.com/vcastor/subroutines_ideas_f90/blob/main/inversion.f90" target="_blank" class="button">Gaussian Inversion</a>
+                <a href="https://github.com/vcastor/helium_montecarlo" target="_blank" class="button">Helium Monte Carlo</a>
+                <a href="https://github.com/vcastor/parallelization_f90" target="_blank" class="button">F90 parallelization</a>
 								
 								<p></p>
-								<p>Poyects in GitHub:</p>
-								<a href="https://github.com/vcastor" class="button">HeH+</a>
+								<p>Documented source:</p>
+								<!--<a href="./codes/integration.zip" class="button">Integration</a>-->
+								<a href="https://github.com/vcastor/integration/blob/main/integration.f90" target="_blank" class="button">Integration</a>
+								<a href="https://github.com/vcastor/integration/blob/main/monte_carlo.f90" target="_blank" class="button">Monte Carlo Integration</a>
+								<a href="https://github.com/vcastor/opt2D" target="_blank" class="button">Optimization in 2D</a>
+								
+
+								<p></p>
+								<p>Poyects</p>
+								<a href="https://github.com/vcastor/nika" class="button">Nika</a>
+								<a href="https://github.com/vcastor/HTR" class="button">HartreeFockRoothaan</a>
 
 
 							</section>
@@ -150,33 +158,31 @@ END PROGRAM QuadraticEquation</code></pre>
 					</div>
 
 				<!-- Footer -->
-					<footer id="footer">
-                                                <section>
-                                                        <h2>Holis :b</h2>
-                                                        <p>C'mon!, follow me or send me an email. Maybe we can be frinds Ü.
-                                                        You can always return to the home page, or go to my blog.</p>
-                                                        <ul class="actions">
-                                                                <li><a href="https://vcastor.github.io" class="button">Home Page</a></li>
-                                                                <li><a href="../index.html" class="button">Blog</a></li>
-                                                        </ul>
-                                                </section>
-                                                <section>
-                                                        <h2>Follow me</h2>
-                                                        <dl class="alt">
-                                                                <dt>Address</dt>
-                                                                <dd>Here, there and everywhere &bull; Madrid, Madrid &bull; Spain</dd>
-                                                                <dt>Email</dt>
-                                                                <dd><a href="mailto:vcastorv@gmail.com">vcastorv@gmail.com</a></dd>
-                                                        </dl>
-                                                        <ul class="icons">
-                                                                <li><a href="http://twitter.com/vcastorv" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
-                                                                <li><a href="http://facebook.com/vcastorv" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
-                                                                <li><a href="http://instagram.com/vcastorv" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
-                                                                <li><a href="http://github.com/vcastor" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
-                                                        </ul>
-                                                </section>
-                                                <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-                                        </footer>
+            <footer id="footer">
+              <section>
+                <h2>Holis</h2>
+                <p>C'mon!, follow me or send me an email. Maybe we can be friends Ü.
+                You can always return to the home page, or go to my blog.</p>
+                <ul class="actions">
+                  <li><a href="../../index.html" class="button">Home Page</a></li>
+                  <li><a href="../../index.html" class="button">Blog</a></li>
+                </ul>
+              </section>
+              <section>
+                <h2>Follow me</h2>
+                  <dl class="alt">
+                    <dt>Address</dt><dd>Here, there and everywhere </dd> 
+                    <dt>Email</dt><dd><a href="mailto:vcastorv@gmail.com">vcastorv@gmail.com</a></dd>
+                  </dl>
+                <ul class="icons">
+                  <li><a href="http://twitter.com/vcastorv" target="_blank" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
+                  <li><a href="http://facebook.com/vcastorv" target="_blank" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
+                  <li><a href="http://instagram.com/vcastorv" target="_blank" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
+                  <li><a href="http://github.com/vcastor" target="_blank" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+                </ul>       
+              </section>  
+            <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+            </footer>
 			</div>
 
 		<!-- Scripts -->

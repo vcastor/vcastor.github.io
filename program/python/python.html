@@ -66,7 +66,42 @@
 										solution for quadratic equations are described by:
 										$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 										Therefore, is so easy compute the value for any QE.
-										<pre><code>PROGRAM QuadraticEquation
+										<pre><code>import numpy as np
+
+print("Write down the coeffients a, b and c as the next form\n ax^2 + bx + x = 0")
+
+a = input("a: ")
+b = input("b: ")
+c = input("c: ")
+
+a = float(a)
+b = float(b)
+c = float(c)
+
+if (a == 0.0):
+        if (b == 0.0):
+                if (c == 0.0):
+                        print("You've written a taoutology, 0 = 0")
+                else:
+                        print("You've written something wrong!")
+        else:
+                print("You've written a linear equation\n but here you have the answer: ", -b/c)
+else:
+        d = b*b - 4.0*a*c
+        if (d > 0):
+                d = np.sqrt(d)
+                r1 = (-b + d)/(2.0*a)
+                r2 = (-b - d)/(2.0*a)
+                print("The two roots are: ")
+                print(r1)
+                print(r2)
+        else:
+                d = np.sqrt(-d)
+                r3 = -b/(2.0*a)
+                r4 = d/(2.0*a)
+                print("The two roots are: ")
+                print(r3, "+", r4, "i")
+                print(r3, "-", r4, "i")
 										</code></pre>
 									</section>
 
@@ -77,33 +112,31 @@
 					</div>
 
 				<!-- Footer -->
-					<footer id="footer">
-                                                <section>
-                                                        <h2>Holis :b</h2>
-                                                        <p>C'mon!, follow me or send me an email. Maybe we can be frinds Ü.
-                                                        You can always return to the home page, or go to my blog.</p>
-                                                        <ul class="actions">
-                                                                <li><a href="../index.html" class="button">Home Page</a></li>
-                                                                <li><a href="../index.html" class="button">Blog</a></li>
-                                                        </ul>
-                                                </section>
-                                                <section>
-                                                        <h2>Follow me</h2>
-                                                        <dl class="alt">
-                                                                <dt>Address</dt>
-                                                                <dd>Here, there and everywhere &bull; Madrid, Madrid &bull; Spain</dd>
-                                                                <dt>Email</dt>
-                                                                <dd><a href="mailto:vcastorv@gmail.com">vcastorv@gmail.com</a></dd>
-                                                        </dl>
-                                                        <ul class="icons">
-                                                                <li><a href="http://twitter.com/vcastorv" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
-                                                                <li><a href="http://facebook.com/vcastorv" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
-                                                                <li><a href="http://instagram.com/vcastorv" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
-                                                                <li><a href="http://github.com/vcastor" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
-                                                        </ul>
-                                                </section>
-                                                <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-                                        </footer>
+            <footer id="footer">
+              <section>
+                <h2>Holis</h2>
+                <p>C'mon!, follow me or send me an email. Maybe we can be friends Ü.
+                You can always return to the home page, or go to my blog.</p>
+                <ul class="actions">
+                  <li><a href="../../index.html" class="button">Home Page</a></li>
+                  <li><a href="../../index.html" class="button">Blog</a></li>
+                </ul>
+              </section>
+              <section>
+                <h2>Follow me</h2>
+                  <dl class="alt">
+                    <dt>Address</dt><dd>Here, there and everywhere </dd> 
+                    <dt>Email</dt><dd><a href="mailto:vcastorv@gmail.com">vcastorv@gmail.com</a></dd>
+                  </dl>
+                <ul class="icons">
+                  <li><a href="http://twitter.com/vcastorv" target="_blank" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
+                  <li><a href="http://facebook.com/vcastorv" target="_blank "class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
+                  <li><a href="http://instagram.com/vcastorv" target="_blank" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
+                  <li><a href="http://github.com/vcastor" target="_blank" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+                </ul>       
+              </section>  
+            <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+            </footer>
 			</div>
 
 		<!-- Scripts -->
